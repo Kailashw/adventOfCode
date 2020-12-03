@@ -5,14 +5,19 @@ const input = [1711, 1924, 1384, 1590, 1876, 1918, 2003, 1514, 1608, 1984, 1706,
 
 // Part 1 : Finding two elements which add up to given SUM_VALUE
 const twoSum = (arr) => {
-    for (let i = 0; i < arr.length - 1; i++) {
-        const balanace = SUM_VALUE - arr[i];
-        if (arr.indexOf(balanace) > -1) {
-            const bal_index = arr.indexOf(balanace);
-            return arr[i] * arr[bal_index];
+    let numObj = {};
+    for (let i = 0; i < arr.length; i++) {
+        let thisNum = arr[i];
+        numObj[thisNum] = i;
+    }
+    for (var i = 0; i < arr.length; i++) {
+        let reminder = SUM_VALUE - arr[i];
+        if (numObj.hasOwnProperty(reminder) && numObj[reminder] !== i) {
+            return arr[i] * arr[numObj[reminder]];
         }
     }
-};
+}
+
 
 // Part 2 : Finding three elements which add up to given SUM_VALUE
 const threeSum = (arr) => {
